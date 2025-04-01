@@ -19,18 +19,19 @@ export default function AddPost(){
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    try{
-        await fetch('/api/add-post', {
-            method: 'POST', 
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({title, content}) })
-            
-        router.refresh()
-    } catch (error){
-        console.error(error)
+
+    try {
+      await fetch("/api/add-post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({title, content})
+      })
+
+      router.refresh();
+    } catch (error) {
+      console.error(error);
     }
 
     setTitle('');
