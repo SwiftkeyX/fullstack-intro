@@ -1,26 +1,23 @@
-'use client'
-
 import Link from 'next/link';
 import Post from './components/Post';
 import styles from './page.module.css'
 import prisma from '@/lib/prisma'
-import { useEffect, useState } from 'react';
 
-
-export default function Home() {
-  // const posts = await getPosts();
-  const [posts, setPosts] = useState([]);
-  
-  useEffect(() => {
-    async function fetchPosts() {
-      const res = await fetch('/api/posts-fetch');
-      const data = await res.json();
-      setPosts(data);
+async function getPosts(){
+  const posts = await prisma.post.findMany({
+    where: {published: true},
+    include: {
+      author: {
+        select: {name: true}
+      }
     }
-    
-    fetchPosts();
   })
+  return posts;
+}
 
+export default async function Home() {
+  const posts = await getPosts();
+  
   return (
     <main className={styles.main}>
       <Link href={'/add-post'}>Add Post</Link>
