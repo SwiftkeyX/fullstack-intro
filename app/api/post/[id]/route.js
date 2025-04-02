@@ -6,7 +6,7 @@ export async function DELETE(request, {params}) {
 
     const post = await prisma.post.delete({
         where: {id}
-    }, { cache: 'no-store' })
+    })
 
     return NextResponse.json(post)
 }

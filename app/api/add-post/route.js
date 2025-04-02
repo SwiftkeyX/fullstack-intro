@@ -15,7 +15,7 @@ export async function POST(request) {
                 name:"ryan"
             }}
         }
-    }, { cache: 'no-store' })
+    })
 
     return NextResponse.json({result})
 }
