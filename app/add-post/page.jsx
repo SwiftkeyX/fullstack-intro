@@ -26,7 +26,8 @@ export default function AddPost(){
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({title, content})
+        body: JSON.stringify({title, content}),
+        cache: "no-store" 
       })
 
       router.refresh();
